@@ -25,7 +25,7 @@ def import_data(filename):
         'Month': 'month', 
         'Länge': 'length',
         })
-    df.date = df.date.astype("datetime64[ns]")
+    df.date = pd.to_datetime(df["date"], dayfirst=True)
     df.text = df.text.fillna('')
     df["month_number"] = df.date.to_numpy('datetime64[M]').view('int64') % 12 + 1
     df["source"] = filename.replace(".csv", "")
